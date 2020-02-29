@@ -92,9 +92,13 @@
 
     // state is a return_url for the origin website
     if (getParam('code') && getParam('state')) {
-        var state = JSON.stringify(getParam('state'));
-        document.getElementsByClassName('.title')[0].innerHTML = 'Redirecting...';
-        location.href = state.return_url + '?name=' + encodeURIComponent(state.name) + '&code=' + encodeURIComponent(getParam('code'));
+        var state = JSON.parse(getParam('state'));
+        document.getElementsByClassName('title')[0].innerHTML = 'Redirecting...';
+        var oauth_callback = {
+            code: getParam('code'),
+            oauth: state.oauth
+        };
+        location.href = state.return_url + '?oauth_callback=' + encodeURIComponent(JSON.stringify(oauth_callback));
     }
 </script>
 </body>
