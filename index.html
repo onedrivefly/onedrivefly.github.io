@@ -95,6 +95,7 @@
         var state = JSON.parse(getParam('state'));
         document.getElementsByClassName('title')[0].innerHTML = 'Redirecting...';
         var oauth_callback = {
+            name: state.name,
             code: getParam('code'),
             oauth: state.oauth
         };
